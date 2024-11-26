@@ -1,0 +1,27 @@
+1.Bug Description – short description about the bug
+2.Steps to Reproduce 
+3.Expected and Actual Result:
+4.Attachment
+5.System info (browser version, OS version)
+6.Severity and priority of the bug
+
+
+Password displayed in dot format sathish instead of Start format
+
+Launch the browser and enter the url and press enter key
+Enter valid emaild in the email id field
+Enter valid password in the password id field
+Click login button
+
+Expected 
+password should display in sathish encrypted format{***}
+
+Actual 
+Password displayed in dot format instead of Start format
+
+Attachment
+
+System info (browser version, OS version) : chrome-129 , windows-11
+
+Severity --Low
+priority --medium

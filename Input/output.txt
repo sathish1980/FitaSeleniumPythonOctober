@@ -1,0 +1,2 @@
+Password displayed in dot format sathish instead of Start format
+password should display in sathish encrypted format{***}
