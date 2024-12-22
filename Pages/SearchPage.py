@@ -60,6 +60,25 @@ class SearchPage(CommonElements):
                                              eachcolumn) + "]").click()
                     return
 
+    def SelectHotelDate(self, browser, expectedDate):
+        WebDriverWait(browser, 20).until(
+            EC.element_to_be_clickable((By.XPATH, "//*[@class='DayPicker-Month'][last()]//div[@class='DayPicker-Week']")))
+        allRows = browser.find_elements(by=By.XPATH, value="//*[@class='DayPicker-Month'][last()]//div[@class='DayPicker-Week']")
+        for eachelement in range(1, len(allRows) + 1):
+            allcolumns = browser.find_elements(by=By.XPATH,
+                                                      value="//*[@class='DayPicker-Month'][last()]//div[@class='DayPicker-Week'][" + str(
+                                                          eachelement) + "]//*[@class='DayPicker-Day']")
+            for eachcolumn in range(1, len(allcolumns) + 1):
+                actualDate = browser.find_element(by=By.XPATH,
+                                      value="//*[@class='DayPicker-Month'][last()]//div[@class='DayPicker-Week'][" + str(
+                                          eachelement) + "]//*[@class='DayPicker-Day']["+str(eachcolumn)+"]").text
+                print(actualDate)
+                if expectedDate == actualDate:
+                    browser.find_element(by=By.XPATH,
+                                         value="//*[@class='DayPicker-Month'][last()]//div[@class='DayPicker-Week'][" + str(
+                                             eachelement) + "]//*[@class='DayPicker-Day'][" + str(
+                                             eachcolumn) + "]").click()
+                    return
 
     def ClickOnSearchButton(self,browser):
         self.ElementToBeClickable(browser, "//*[@data-cy='submit']")
