@@ -17,7 +17,7 @@ from Pages.SearchResultPage import SearchResultPage
 class Test_MakeMytripHotel(SearchPage, HotelSearchPage):
 
 
-    def test_validhotesearch(self,url_Data, hotelsearch):
+    def test_validhotelsearchwithsingeldata(self,url_Data, hotelsearch):
         self.browser = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()))
         self.browser.maximize_window()
         print("log in")
@@ -29,6 +29,22 @@ class Test_MakeMytripHotel(SearchPage, HotelSearchPage):
         self.SelectCity(self.browser,hotelsearch[0])
         self.SelectHotelDate(self.browser, hotelsearch[1])
         self.SelectHotelDate(self.browser, hotelsearch[2])
+        self.ClickOnRoomAndGuest(self.browser)
+        self.ClickOnSearchButton(self.browser)
+        time.sleep(10)
+
+    def test_validhotelsearchwithmultidata(self,url_Data, hotelsearchwithmultiple):
+        self.browser = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()))
+        self.browser.maximize_window()
+        print("log in")
+        # self.browser.implicitly_wait(60)
+        self.browser.get(url_Data)
+        self.ClickOnAddPopup(self.browser)
+        self.ClickOnHotelMenu(self.browser)
+        self.ClickOnCityDropdown(self.browser)
+        self.SelectCity(self.browser,hotelsearchwithmultiple[0])
+        self.SelectHotelDate(self.browser, hotelsearchwithmultiple[1])
+        self.SelectHotelDate(self.browser, hotelsearchwithmultiple[2])
         self.ClickOnRoomAndGuest(self.browser)
         self.ClickOnSearchButton(self.browser)
         time.sleep(10)

@@ -20,3 +20,7 @@ def flightSearch():
 def hotelsearch():
     return["Chennai","10","19"]
 
+@pytest.fixture(params=[("Mumbai","15","19"),("Goa","20","29")])
+def hotelsearchwithmultiple(request):
+    return request.param
+
