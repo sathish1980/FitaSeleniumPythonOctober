@@ -16,3 +16,7 @@ def url_Data():
 def flightSearch():
     return["BLR","MAA","25"]
 
+@pytest.fixture()
+def hotelsearch():
+    return["Chennai","10","19"]
+
