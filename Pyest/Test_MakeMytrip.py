@@ -35,14 +35,42 @@ class Test_MakeMytrip(SearchPage,SearchResultPage):
         assert self.GetValidationText(self.browser) == "NETWORK PROBLEM"
 
 
-        #self.browser.quit()
+        self.browser.quit()
 
-    def sartest12_OpenAndClose2(self,url_Data):
+    def test12_OpenAndClose2(self,url_Data):
         self.browser = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()))
         self.browser.maximize_window()
         # self.browser.implicitly_wait(60)
         self.browser.get(url_Data)
         #self.browser.get("https://www.leafground.com/alert.xhtml")
+        self.browser.quit()
+
+
+    def test_validFlightsearchwithMultidata(self,url_Data,flightdataFromExecl):
+        self.browser = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()))
+        self.browser.maximize_window()
+        print("log in")
+        # self.browser.implicitly_wait(60)
+        self.browser.get(url_Data)
+        self.ClickOnAddPopup(self.browser)
+        total_data =flightdataFromExecl
+        print(total_data)
+        size = len(total_data)
+        print(size)
+        totalcolumn = size / 3
+        for i in range(1, int(totalcolumn) + 1):
+            self.ClickOnFromCityDropdown(self.browser)
+            self.SelectValueFromList(self.browser,flightdataFromExecl["From"+str(i)])
+            self.ClickOnToCityDropdown(self.browser)
+            print("to city",flightdataFromExecl["To"+str(i)])
+            self.SelectValueFromList(self.browser,flightdataFromExecl["To"+str(i)])
+            self.SelectDate(self.browser,flightdataFromExecl["Date"+str(i)])
+            self.ClickOnSearchButton(self.browser)
+            print(self.GetValidationText(self.browser))
+            assert self.GetValidationText(self.browser) == "NETWORK PROBLEM"
+            self.browser.back()
+            time.sleep(5)
+
         self.browser.quit()
 
 

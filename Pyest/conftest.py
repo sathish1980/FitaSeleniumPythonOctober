@@ -1,5 +1,7 @@
 import pytest
 
+from Utils import ExcelRead
+
 
 @pytest.fixture()
 def url_Data1():
@@ -22,5 +24,11 @@ def hotelsearch():
 
 @pytest.fixture(params=[("Mumbai","15","19"),("Goa","20","29")])
 def hotelsearchwithmultiple(request):
+    return request.param
+
+credential_excel_dic = [ExcelRead.Excel_Read.retrundicvalue("ValidFlight")]
+
+@pytest.fixture(params=credential_excel_dic)
+def flightdataFromExecl(request):
     return request.param
 
