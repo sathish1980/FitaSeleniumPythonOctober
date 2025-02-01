@@ -1,7 +1,10 @@
 import pytest
+from selenium.webdriver.chrome import webdriver
 
 from Utils import ExcelRead
-
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 @pytest.fixture()
 def url_Data1():
@@ -31,4 +34,10 @@ credential_excel_dic = [ExcelRead.Excel_Read.retrundicvalue("ValidFlight")]
 @pytest.fixture(params=credential_excel_dic)
 def flightdataFromExecl(request):
     return request.param
+
+@pytest.fixture
+def driver():
+    browser = webdriver.ChromiumDriver(service=ChromeService(executable_path=ChromeDriverManager().install()))
+    yield browser
+    browser.quit()
 
